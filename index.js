@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const expressValidator = require('express-validator')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 require('dotenv').config()
 
 //Routers
@@ -19,6 +20,7 @@ mongoose.connect(process.env.DATABASE, {
 app.use(express.json())
 app.use(expressValidator())
 app.use(cookieParser())
+app.use(cors())
 
 app.use('/api', authRouter)
 app.use('/api/users', userRouter)
