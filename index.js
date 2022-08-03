@@ -7,6 +7,8 @@ require('dotenv').config()
 //Routers
 const authRouter = require('./routes/auth')
 const userRouter = require('./routes/users')
+const categoryRouter = require('./routes/categories')
+const productRouter = require('./routes/products')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE, {
@@ -20,6 +22,8 @@ app.use(cookieParser())
 
 app.use('/api', authRouter)
 app.use('/api/users', userRouter)
+app.use('/api/category', categoryRouter)
+app.use('/api/products', productRouter)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
