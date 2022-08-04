@@ -6,6 +6,8 @@ exports.signup = (req, res) => {
     user.save((err, user) => {
         if(err)
             return res.status(400).send(err)
+            user.hashed_password = undefined
+            user.salt = undefined
         return res.send(user)
     })
 }
@@ -23,6 +25,8 @@ exports.signin = (req, res) => {
             })
         const token = jwt.sign({_id: user._id, role: user.role}, process.env.JWT_SECRET)
         res.cookie('token', token, {expire: new Date() + 8062000})
+        user.hashed_password = undefined
+        user.salt = undefined
         return res.json({token, user})
     })
 }
