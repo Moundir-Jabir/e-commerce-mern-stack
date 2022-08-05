@@ -17,11 +17,11 @@ exports.signin = (req, res) => {
     User.findOne({email}, (err, user) => {
         if(err || !user)
             return res.status(400).json({
-                error: 'Not found user with this email'
+                erreur: 'Not found user with this email'
             })
         if(!user.authenticated(password))
             return res.status(401).json({
-                erreur: 'Email and password dont match'
+                erreur: 'Incorect password'
             })
         const token = jwt.sign({_id: user._id, role: user.role}, process.env.JWT_SECRET)
         res.cookie('token', token, {expire: new Date() + 8062000})
