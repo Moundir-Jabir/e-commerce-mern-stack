@@ -1,4 +1,3 @@
-const category = require('../models/category')
 const Categorie = require('../models/category')
 
 exports.createCategory = (req, res) => {
@@ -6,7 +5,7 @@ exports.createCategory = (req, res) => {
     category.save((err, category) => {
         if(err)
             return res.status(400).json({
-                error: 'Bad Request'
+                error: 'Category already exist'
             })
         return res.json({
             category: category
