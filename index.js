@@ -10,6 +10,8 @@ const authRouter = require('./routes/auth')
 const userRouter = require('./routes/users')
 const categoryRouter = require('./routes/categories')
 const productRouter = require('./routes/products')
+const braintreeRouter = require('./routes/braintree')
+const orderRouter = require('./routes/order')
 
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASE, {
@@ -26,6 +28,8 @@ app.use('/api', authRouter)
 app.use('/api/users', userRouter)
 app.use('/api/category', categoryRouter)
 app.use('/api/products', productRouter)
+app.use('/api/braintree', braintreeRouter)
+app.use('/api/orders', orderRouter)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
