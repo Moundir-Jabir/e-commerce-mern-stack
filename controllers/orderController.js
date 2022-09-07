@@ -17,3 +17,15 @@ exports.listOrders = (req, res) => {
         return res.json(orders)
     })
 }
+
+exports.setStatus = (req, res) => {
+    Order.update(
+        {_id: req.order._id},
+        {$set: {status: req.body.status}},
+        (err, order) => {
+            if(err)
+                return res.status(400).json({err})
+            return res.json({order})
+        }
+    )
+}
